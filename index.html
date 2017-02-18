@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+	<title>She Blinded Me With Science</title>
+</head>
+<body>
+	<div id="game">
+		<p>Press Any Key to Get Started!</p>
+	</div>
+
+	<script type="text/javascript">
+
+		var wordList = ["eclipse", "greenhouse", "jupiter", "radioactive", "astronomy", "satellite", "electric", "ultraviolet", "vegetation", "galaxy", "rocket", "robot", "calculator", "neutron", "gravity", "curie"];
+
+		var wins = 0;
+		var losses = 0;
+		var activeWord = "";
+		var remainingGuesses = (activeWord + 3);
+
+
+
+		document.onkeyup = function(event){
+
+			var userInput = event.key;
+
+		// Gets random word from array			
+
+			var activeWord = wordList[Math.floor(Math.random()*wordList.length)];
+
+			console.log(activeWord);
+
+			for (var i = 0; i < activeWord.length; i++){
+				
+				alert(i + ": " + activeWord.charAt(i));
+
+				if (userInput === activeWord.charAt(i)){
+					// somehow show up on line
+				}
+
+			}
+
+			remainingGuesses = remainingGuesses - 1;
+			// if (there was a not a match){
+			// 	somehow show up in wrong area
+			// }
+
+          var html = "<p>Press Any Key to Get Started!</p>" +
+          "<p>wins: " + wins + "</p>" +
+          "<p>losses: " + losses + "</p>" + 
+          "<p>remaining guesses: " + remainingGuesses + "</p>";
+
+          // Injecting the HTML we just created into our div and updating the game information on our page.
+          document.querySelector("#game").innerHTML = html;
+
+		}
+		
+
+	</script>>
+
+</body>
+</html>
