@@ -1,0 +1,53 @@
+*{
+	box-sizing: border-box;
+}
+.jumbotron{
+	text-align: center;
+	color: green !important;
+	background-color: black !important;
+	opacity: 0.8 !important;
+}
+.mainGif img{
+	width: 75%;
+	height: auto;
+}
+body{
+	padding: 10px;
+	background-image: url("../images/dextersLab.jpg");
+	background-size: cover;
+	font-family: 'Baskerville Italics' !important;
+}
+.row{
+	margin: 15px;
+	padding: 15px;
+	opacity: 0.8 !important;	
+}
+/*p{
+	width: 100%;
+}*/
+#word{
+	text-align: center;
+}
+#game, #word, #guessed {
+	color: white;
+	font-size: 18px;
+}
+#game{
+	background-color: black;
+	padding: 10px;
+	width: 33%;
+}
+
+#guessed {
+	background-color: black;
+	padding: 10px;
+	width: 33%;	
+}
+
+#word{
+	background-color: black;
+	padding: 10px;
+}
+#mainImage{
+	width:33%;
+}

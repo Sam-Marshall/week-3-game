@@ -3,95 +3,223 @@
 <head>
     <meta charset="UTF-8">
 	<title>She Blinded Me With Science</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-	<div id="game">
-		<p>Press Any Key to Get Started!</p>
+
+	<div class="container-fluid">
+		
+		<div class="jumbotron">
+
+			<h1>She Blinded Me With Science!</h1>
+			<p>Boiling beakers Batman, whatever are we going to do?!</p>
+
+			<audio loop id="scienceMp3" autoplay="autoplay" src="assets/images/BlindedMeWithScience.mp3"></audio>
+		
+		</div>
+
+		<div class="row">
+
+			<div id="game" class="col-md-4 col-sm-4 text-center center-block">
+
+				<p>Press Any Key to Get Started!</p>
+				<br>
+
+			</div>	
+
+			<div id="mainImage" class="col-md-4 col-sm-4 mainGif text-center center-block">
+			
+			<img src="assets/images/beaker.gif">	
+
+			</div>
+
+			<div id="guessed" class="col-md-4 col-sm-4 text-center center-block">
+			
+			</div>	
+
+		</div>
+		
+		<div class="row">	
+
+			<div class="col-md-4 col-sm-4">
+			</div>
+
+			<div id="word" class="col-md-4 col-sm-4 center-block">
+
+				<p>HANGMAN</p>
+				<br><br>
+
+			</div>
+
+		</div>
+
+	
 	</div>
 	
-	<div id="word">
-		<p>Placeholder</p>
-	</div>
-
 	<script type="text/javascript">
 
-		var wordList = ["eclipse", "greenhouse", "jupiter", "radioactive", "astronomy", "satellite", "electric", "ultraviolet", "vegetation", "galaxy", "rocket", "robot", "calculator", "neutron", "gravity", "curie", "chemical", "brainstem"];
+		var wordList = ["eclipse", "greenhouse", "jupiter", "radioactive", "astronomy", "satellite", "electric", "ultraviolet", "vegetation", "galaxy", "rocket", "robot", "calculator", "neutron", "gravity", "curie", "chemical", "brainstem", "cyclone", "kaleidoscope", "firefly", "reflection"];
 
 		var wins = 0;
 		var losses = 0;
-		var activeWord = "";
 		var activeWordArray = [];
 		var remainingGuesses = "";
 		var lineMarks = [];
+		var wrongGuesses = [];
+		var userInput = "";
+		var letterIncluded = false;
+		var beenGuessed = false;
 
+		function getComputerGuess(){
 
-		var activeWord = wordList[Math.floor(Math.random()*wordList.length)];
+			activeWordArray = [];
 
-		remainingGuesses = activeWord.length;
-
-		for (var i = 0; i < activeWord.length; i++){
-				
-			lineMarks[i] = " _ ";
-			activeWordArray[i] = activeWord.charAt(i);
-
-			}
-
-		document.onkeyup = function(event){
-
-			var userInput = event.key.toLowerCase();
-
-			console.log(activeWord);
-
-			for (var i = 0; i < activeWord.length; i++){
-				
-				// alert(i + ": " + activeWord.charAt(i));
-
-				if (activeWord.charAt(i) === userInput){
-					console.log(userInput);
-					lineMarks[i] = userInput;
-				}
-				else{
-					console.log("Not this time!");
-				}
-
-
-
-			}
+			var activeWord = wordList[Math.floor(Math.random()*wordList.length)];
 			
-		if (lineMarks.toString() === activeWordArray.toString()){
-			
-			wins = wins + 1;
-			lineMarks = [];
-			alert("You got it! Great Job!");
-
-			activeWord = wordList[Math.floor(Math.random()*wordList.length)];
-			remainingGuesses = activeWord.length;
-
 			for (var i = 0; i < activeWord.length; i++){
-				
-			lineMarks[i] = " _ ";
-			activeWordArray[i] = activeWord.charAt(i);
 
-			}
+				activeWordArray[i] = activeWord.charAt(i);	
 
-			document.getElementById("word").innerHTML = lineMarks;
+			}	
+
+			console.log(activeWordArray.join(''));
+
+			return activeWordArray;
 
 		}
 
-			remainingGuesses = remainingGuesses - 1;
-			// if (there was a not a match){
-			// 	somehow show up in wrong area
-			// }
+		function getBlankLines(x){
 
-	          var html = "<p>Press Any Key to Get Started!</p>" +
-	          "<p>wins: " + wins + "</p>" +
-	          "<p>losses: " + losses + "</p>" + 
-	          "<p>remaining guesses: " + remainingGuesses + "</p>";
-	          // "<p>" + lineMarks "</p>";
+			lineMarks = [];
+ 		
+			for (var i = 0; i < x.length; i++){
+					
+				lineMarks[i] = " _ ";
 
-	          // Injecting the HTML we just created into our div and updating the game information on our page.
-	          document.getElementById("game").innerHTML = html;
-	          document.getElementById("word").innerHTML = lineMarks;
+				}
+			
+			document.getElementById("word").innerHTML = lineMarks.join(' ');				
+
+			return lineMarks;
+		}
+
+		function inArray(x, y){
+
+			letterIncluded = false;
+
+			for (var i = 0; i < y.length; i++){
+				if (y[i] === x){
+					letterIncluded = true;
+				} }
+			
+			return letterIncluded;	
+
+		}
+
+		function hasBeenGuessed(x, y){
+
+			beenGuessed = false;
+
+			for (var i = 0; i < y.length; i++){
+				if (y[i] === x){
+					beenGuessed = true;
+				} }
+			
+			return beenGuessed;	
+
+		}
+
+		getComputerGuess();
+		getBlankLines(activeWordArray);
+		hasBeenGuessed(userInput, wrongGuesses);		
+		
+		remainingGuesses = activeWordArray.length;		
+		
+		document.onkeyup = function(event){
+
+
+			
+			// hasBeenGuessed(userInput, lineMarks);
+
+			// if (beenGuessed === false){
+
+			// var letterIncluded = false;
+
+			var userInput = event.key.toLowerCase();
+
+
+			for (var i = 0; i < activeWordArray.length; i++){
+
+				if (activeWordArray[i] === userInput){
+
+					lineMarks[i] = userInput;
+					// letterIncluded = true; 
+				}
+				}
+
+			inArray(userInput, lineMarks);
+
+
+			console.log(letterIncluded);
+			console.log(beenGuessed);
+
+			if (letterIncluded === false && beenGuessed === false){
+
+				wrongGuesses.push(userInput);			
+				remainingGuesses = remainingGuesses - 1;
+
+			}	
+
+			else (letterIncluded === false && beenGuessed === true)
+				console.log(userInput + " was already guessed. Please try again!");
+				
+
+		if (lineMarks.toString() === activeWordArray.toString()){
+
+				alert("The word was: " + activeWordArray.join('') + "\n\nYou got it! Great Job!");
+				
+				wins = wins + 1;
+				wrongGuesses = [];
+
+				getComputerGuess();
+
+				remainingGuesses = activeWordArray.length;
+
+				getBlankLines(activeWordArray);
+
+				letterIncluded = false;
+				beenGuessed = false;
+
+			}
+
+			else if (remainingGuesses < 1){
+
+				alert("The word was: " + activeWordArray.join('') + "\n\nYou Lose. Please try again!");
+
+				losses = losses + 1;
+				wrongGuesses = [];	
+
+				getComputerGuess();
+				remainingGuesses = activeWordArray.length;
+
+				getBlankLines(activeWordArray);
+
+				letterIncluded = false;
+				beenGuessed = false;
+
+			}
+				var wrongGuessesText = "<p>Letters Guessed: </p" + "\n<p>" + wrongGuesses.join(' ') + "</p";
+
+				var html = "\n<p>Continue Guessing!</p>" +
+				"<p>wins: " + wins + "</p>" +
+				"<p>losses: " + losses + "</p>" + 
+				"<p>remaining guesses: " + remainingGuesses + "</p>";
+
+		          // Injecting the HTML we just created into our div and updating the game information on our page.
+				document.getElementById("game").innerHTML = html;
+				document.getElementById("word").innerHTML = lineMarks.join(' ');
+				document.getElementById("guessed").innerHTML = wrongGuessesText;
 
 
 		}
