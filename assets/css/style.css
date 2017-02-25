@@ -6,10 +6,17 @@
 	color: green !important;
 	background-color: black !important;
 	opacity: 0.8 !important;
+	position: relative;
 }
-.mainGif img{
-	width: 75%;
+#imgChange{
+	width: 100%;
 	height: auto;
+}
+#titleID{
+	display: inline;
+	background-color: black !important;
+	color: white !important;
+	font-size: 30px;
 }
 body{
 	padding: 10px;
@@ -49,5 +56,21 @@ body{
 	padding: 10px;
 }
 #mainImage{
-	width:33%;
+	height: 100px;
+	width: auto;
+	position: absolute;
+	top: 70px;
+    left: 110px;
+	border-radius: 10px;    
+}
+#mainImage2{
+	height: 100px;
+	width: auto;
+	position: absolute;
+	top: 70px;
+    right: 110px;
+	border-radius: 10px;    
+}
+div{
+	border-radius: 10px;
 }

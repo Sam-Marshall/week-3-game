@@ -5,6 +5,7 @@
 	<title>She Blinded Me With Science</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!--   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
 </head>
 <body>
 
@@ -15,6 +16,9 @@
 			<h1>She Blinded Me With Science!</h1>
 			<p>Boiling beakers Batman, whatever are we going to do?!</p>
 
+			<div><img id="mainImage" src="assets/images/beaker.gif"></div>
+			<div><img id="mainImage2" src="assets/images/beaker.gif"></div>
+			<div id="titleID"></div>
 			<audio loop id="scienceMp3" autoplay="autoplay" src="assets/images/BlindedMeWithScience.mp3"></audio>
 		
 		</div>
@@ -28,9 +32,9 @@
 
 			</div>	
 
-			<div id="mainImage" class="col-md-4 col-sm-4 mainGif text-center center-block">
+			<div class="col-md-4 col-sm-4 mainGif text-center center-block">
 			
-			<img src="assets/images/beaker.gif">	
+			<img id="imgChange" src="assets/images/science.gif">	
 
 			</div>
 
@@ -59,7 +63,7 @@
 	
 	<script type="text/javascript">
 
-		var wordList = ["eclipse", "greenhouse", "jupiter", "radioactive", "astronomy", "satellite", "electric", "ultraviolet", "vegetation", "galaxy", "rocket", "robot", "calculator", "neutron", "gravity", "curie", "chemical", "brainstem", "cyclone", "kaleidoscope", "firefly", "reflection"];
+		var wordList = ["eclipse", "quantum", "jupiter", "radioactive", "astronomy", "satellite", "electric", "ultraviolet", "vegetation", "galaxy", "rocket", "robot", "calculator", "neutron", "gravity", "curie", "chemical", "brainstem", "cyclone", "kaleidoscope", "firefly", "reflection"];
 
 		var wins = 0;
 		var losses = 0;
@@ -69,14 +73,14 @@
 		var wrongGuesses = [];
 		var userInput = "";
 		var letterIncluded = false;
-		var beenGuessed = false;
+		var beenGuessed = [];
 
 		function getComputerGuess(){
 
 			activeWordArray = [];
 
 			var activeWord = wordList[Math.floor(Math.random()*wordList.length)];
-			
+
 			for (var i = 0; i < activeWord.length; i++){
 
 				activeWordArray[i] = activeWord.charAt(i);	
@@ -117,44 +121,39 @@
 
 		}
 
-		function hasBeenGuessed(x, y){
 
-			beenGuessed = false;
-
-			for (var i = 0; i < y.length; i++){
-				if (y[i] === x){
-					beenGuessed = true;
-				} }
-			
-			return beenGuessed;	
-
-		}
-
+//Random Word Generation
 		getComputerGuess();
-		getBlankLines(activeWordArray);
-		hasBeenGuessed(userInput, wrongGuesses);		
+
+//Blank Line Generation
+		getBlankLines(activeWordArray);		
 		
-		remainingGuesses = activeWordArray.length;		
-		
+		remainingGuesses = activeWordArray.length;	
+
+
+
+//Getting User Input		
 		document.onkeyup = function(event){
-
-
-			
-			// hasBeenGuessed(userInput, lineMarks);
-
-			// if (beenGuessed === false){
-
-			// var letterIncluded = false;
 
 			var userInput = event.key.toLowerCase();
 
+			document.getElementById("titleID").innerHTML = ("");
+			document.getElementById("mainImage").src="assets/images/beaker.gif";
+			//Checking to see if letter was guessed already
+
+			inArray(userInput, beenGuessed);
+
+			//If letter was not guessed already do the following
+
+			if (letterIncluded === false){
 
 			for (var i = 0; i < activeWordArray.length; i++){
 
 				if (activeWordArray[i] === userInput){
 
 					lineMarks[i] = userInput;
-					// letterIncluded = true; 
+					beenGuessed.push(userInput);
+
 				}
 				}
 
@@ -162,25 +161,155 @@
 
 
 			console.log(letterIncluded);
-			console.log(beenGuessed);
 
-			if (letterIncluded === false && beenGuessed === false){
+			if (letterIncluded === false){
 
-				wrongGuesses.push(userInput);			
+				wrongGuesses.push(userInput);
+				beenGuessed.push(userInput);			
 				remainingGuesses = remainingGuesses - 1;
 
 			}	
-
-			else (letterIncluded === false && beenGuessed === true)
-				console.log(userInput + " was already guessed. Please try again!");
 				
-
 		if (lineMarks.toString() === activeWordArray.toString()){
+
+				if (activeWordArray.toString() == "e,c,l,i,p,s,e"){
+
+					document.getElementById("imgChange").src="assets/images/eclipse.jpg";
+					document.getElementById("scienceMp3").src="assets/images/eclipse.mp3";
+
+				}
+				if (activeWordArray.toString() == "q,u,a,n,t,u,m"){
+
+					document.getElementById("imgChange").src="assets/images/quantum.jpg";
+					document.getElementById("scienceMp3").src="assets/images/quantum.mp3";
+
+				}
+				if (activeWordArray.toString() == "j,u,p,i,t,e,r"){
+
+					document.getElementById("imgChange").src="assets/images/jupiter.jpg";
+					document.getElementById("scienceMp3").src="assets/images/jupiter.mp3";
+
+				}					
+				if (activeWordArray.toString() == "r,a,d,i,o,a,c,t,i,v,e"){
+
+					document.getElementById("imgChange").src="assets/images/radioactive.jpg";
+					document.getElementById("scienceMp3").src="assets/images/radioactive.mp3";
+
+				}							
+				if (activeWordArray.toString() == "a,s,t,r,o,n,o,m,y"){
+
+					document.getElementById("imgChange").src="assets/images/astronomy.jpg";
+					document.getElementById("scienceMp3").src="assets/images/astronomy.mp3";
+
+				}
+				if (activeWordArray.toString() == "s,a,t,e,l,l,i,t,e"){
+
+					document.getElementById("imgChange").src="assets/images/satellite.gif";
+					document.getElementById("scienceMp3").src="assets/images/satellite.mp3";
+
+				}
+				if (activeWordArray.toString() == "e,l,e,c,t,r,i,c"){
+
+					document.getElementById("imgChange").src="assets/images/electric.gif";
+					document.getElementById("scienceMp3").src="assets/images/electric.mp3";
+
+				}
+				if (activeWordArray.toString() == "u,l,t,r,a,v,i,o,l,e,t"){
+
+					document.getElementById("imgChange").src="assets/images/ultraviolet.jpg";
+					document.getElementById("scienceMp3").src="assets/images/ultraviolet.mp3";
+
+				}
+				if (activeWordArray.toString() == "v,e,g,e,t,a,t,i,o,n"){
+
+					document.getElementById("imgChange").src="assets/images/vegetation.jpg";
+					document.getElementById("scienceMp3").src="assets/images/vegetation.mp3";
+
+				}												
+				if (activeWordArray.toString() == "g,a,l,a,x,y"){
+
+					document.getElementById("imgChange").src="assets/images/galaxy.gif";
+					document.getElementById("scienceMp3").src="assets/images/galaxy.mp3";
+
+				}
+				if (activeWordArray.toString() == "r,o,c,k,e,t"){
+
+					document.getElementById("imgChange").src="assets/images/rocket.jpg";
+					document.getElementById("scienceMp3").src="assets/images/rocket.mp3";
+
+				}	
+				if (activeWordArray.toString() == "r,o,b,o,t"){
+
+					document.getElementById("imgChange").src="assets/images/robot.gif";
+					document.getElementById("scienceMp3").src="assets/images/robot.mp3";
+
+				}	
+				if (activeWordArray.toString() == "c,a,l,c,u,l,a,t,o,r"){
+
+					document.getElementById("imgChange").src="assets/images/calculator.jpg";
+					document.getElementById("scienceMp3").src="assets/images/calculator.mp3";
+
+				}										
+				if (activeWordArray.toString() == "n,e,u,t,r,o,n"){
+
+					document.getElementById("imgChange").src="assets/images/neutron.jpg";
+					document.getElementById("scienceMp3").src="assets/images/neutron.mp3";
+
+				}
+				if (activeWordArray.toString() == "g,r,a,v,i,t,y"){
+
+					document.getElementById("imgChange").src="assets/images/gravity.jpg";
+					document.getElementById("scienceMp3").src="assets/images/gravity.mp3";
+
+				}
+				if (activeWordArray.toString() == "c,u,r,i,e"){
+
+					document.getElementById("imgChange").src="assets/images/curie.gif";
+					document.getElementById("scienceMp3").src="assets/images/curie.mp3";
+
+				}		
+				if (activeWordArray.toString() == "c,h,e,m,i,c,a,l"){
+
+					document.getElementById("imgChange").src="assets/images/chemical.jpg";
+					document.getElementById("scienceMp3").src="assets/images/chemical.mp3";
+
+				}										
+				if (activeWordArray.toString() == "b,r,a,i,n,s,t,e,m"){
+
+					document.getElementById("imgChange").src="assets/images/brainstem.jpg";
+					document.getElementById("scienceMp3").src="assets/images/brainstem.mp3";
+
+				}
+				if (activeWordArray.toString() == "c,y,c,l,o,n,e"){
+
+					document.getElementById("imgChange").src="assets/images/cyclone.jpg";
+					document.getElementById("scienceMp3").src="assets/images/cyclone.mp3";
+
+				}	
+				if (activeWordArray.toString() == "k,a,l,e,i,d,o,s,c,o,p,e"){
+
+					document.getElementById("imgChange").src="assets/images/kaleidoscope.gif";
+					document.getElementById("scienceMp3").src="assets/images/kaleidoscope.mp3";
+
+				}			
+				if (activeWordArray.toString() == "f,i,r,e,f,l,y"){
+
+					document.getElementById("imgChange").src="assets/images/firefly.gif";
+					document.getElementById("scienceMp3").src="assets/images/firefly.mp3";
+
+				}
+				if (activeWordArray.toString() == "r,e,f,l,e,c,t,i,o,n"){
+
+					document.getElementById("imgChange").src="assets/images/reflection.jpg";
+					document.getElementById("scienceMp3").src="assets/images/reflection.mp3";
+
+				}
 
 				alert("The word was: " + activeWordArray.join('') + "\n\nYou got it! Great Job!");
 				
 				wins = wins + 1;
 				wrongGuesses = [];
+				beenGuessed = [];
 
 				getComputerGuess();
 
@@ -189,7 +318,6 @@
 				getBlankLines(activeWordArray);
 
 				letterIncluded = false;
-				beenGuessed = false;
 
 			}
 
@@ -198,7 +326,8 @@
 				alert("The word was: " + activeWordArray.join('') + "\n\nYou Lose. Please try again!");
 
 				losses = losses + 1;
-				wrongGuesses = [];	
+				wrongGuesses = [];
+				beenGuessed = [];					
 
 				getComputerGuess();
 				remainingGuesses = activeWordArray.length;
@@ -206,9 +335,9 @@
 				getBlankLines(activeWordArray);
 
 				letterIncluded = false;
-				beenGuessed = false;
 
 			}
+
 				var wrongGuessesText = "<p>Letters Guessed: </p" + "\n<p>" + wrongGuesses.join(' ') + "</p";
 
 				var html = "\n<p>Continue Guessing!</p>" +
@@ -223,6 +352,14 @@
 
 
 		}
+
+		else{
+			console.log("Try again!");
+			// alert(userInput + " was already guessed. Please choose another letter!");
+			document.getElementById("titleID").innerHTML = ("Zoinks! " +userInput + " was already guessed. Please choose another letter!");
+		}
+
+	}
 
 	</script>>
 
