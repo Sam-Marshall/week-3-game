@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
 	<title>She Blinded Me With Science</title>
+	<link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!--   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
@@ -16,8 +17,8 @@
 			<h1>She Blinded Me With Science!</h1>
 			<p>Boiling beakers Batman, whatever are we going to do?!</p>
 
-			<div><img id="mainImage" src="assets/images/beaker.gif"></div>
-			<div><img id="mainImage2" src="assets/images/beaker.gif"></div>
+<!-- 			<div><img id="mainImage" src="assets/images/beaker.gif"></div>
+			<div><img id="mainImage2" src="assets/images/beaker.gif"></div> -->
 			<div id="titleID"></div>
 			<audio loop id="scienceMp3" autoplay="autoplay" src="assets/images/BlindedMeWithScience.mp3"></audio>
 		
@@ -34,7 +35,7 @@
 
 			<div class="col-md-4 col-sm-4 mainGif text-center center-block">
 			
-			<img id="imgChange" src="assets/images/science.gif">	
+			<img id="imgChange" src="assets/images/science.gif" alt="Science Gif">	
 
 			</div>
 
@@ -63,7 +64,7 @@
 	
 	<script type="text/javascript">
 
-		var wordList = ["eclipse", "quantum", "jupiter", "radioactive", "astronomy", "satellite", "electric", "ultraviolet", "vegetation", "galaxy", "rocket", "robot", "calculator", "neutron", "gravity", "curie", "chemical", "brainstem", "cyclone", "kaleidoscope", "firefly", "reflection"];
+		var wordList = ["eclipse", "quantum", "jupiter", "radioactive", "astronomy", "satellite", "electric", "ultraviolet", "vegetation", "galaxy", "rocket", "robot", "calculator", "neutron", "gravity", "curie", "chemical", "brainstem", "kaleidoscope", "firefly", "reflection", "space", "element", "astrophysicist"];
 
 		var wins = 0;
 		var losses = 0;
@@ -74,6 +75,7 @@
 		var userInput = "";
 		var letterIncluded = false;
 		var beenGuessed = [];
+		var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 		function getComputerGuess(){
 
@@ -137,227 +139,249 @@
 
 			var userInput = event.key.toLowerCase();
 
-			document.getElementById("titleID").innerHTML = ("");
-			document.getElementById("mainImage").src="assets/images/beaker.gif";
-			//Checking to see if letter was guessed already
+			//Check that letter key was pressed
 
-			inArray(userInput, beenGuessed);
+			inArray(userInput, alphabet);
 
-			//If letter was not guessed already do the following
+			if (letterIncluded === true){
 
-			if (letterIncluded === false){
+				document.getElementById("titleID").innerHTML = ("");
 
-			for (var i = 0; i < activeWordArray.length; i++){
+				//Checking to see if letter was guessed already
 
-				if (activeWordArray[i] === userInput){
+				inArray(userInput, beenGuessed);
 
-					lineMarks[i] = userInput;
-					beenGuessed.push(userInput);
+				//If letter was not guessed already do the following
+
+				if (letterIncluded === false){
+
+					for (var i = 0; i < activeWordArray.length; i++){
+
+						if (activeWordArray[i] === userInput){
+
+							lineMarks[i] = userInput;
+							beenGuessed.push(userInput);
+
+						}
+						}
+
+					inArray(userInput, lineMarks);
+
+					if (letterIncluded === false){
+
+						wrongGuesses.push(userInput);
+						beenGuessed.push(userInput);			
+						remainingGuesses = remainingGuesses - 1;
+
+					}	
+						
+					if (lineMarks.toString() === activeWordArray.toString()){
+
+						if (activeWordArray.toString() == "e,c,l,i,p,s,e"){
+
+							document.getElementById("imgChange").src="assets/images/eclipse.jpg";
+							document.getElementById("scienceMp3").src="assets/images/eclipse.mp3";
+
+						}
+						if (activeWordArray.toString() == "q,u,a,n,t,u,m"){
+
+							document.getElementById("imgChange").src="assets/images/quantum.jpg";
+							document.getElementById("scienceMp3").src="assets/images/quantum.mp3";
+
+						}
+						if (activeWordArray.toString() == "j,u,p,i,t,e,r"){
+
+							document.getElementById("imgChange").src="assets/images/jupiter.jpg";
+							document.getElementById("scienceMp3").src="assets/images/jupiter.mp3";
+
+						}					
+						if (activeWordArray.toString() == "r,a,d,i,o,a,c,t,i,v,e"){
+
+							document.getElementById("imgChange").src="assets/images/radioactive.jpg";
+							document.getElementById("scienceMp3").src="assets/images/radioactive.mp3";
+
+						}							
+						if (activeWordArray.toString() == "a,s,t,r,o,n,o,m,y"){
+
+							document.getElementById("imgChange").src="assets/images/astronomy.jpg";
+							document.getElementById("scienceMp3").src="assets/images/astronomy.mp3";
+
+						}
+						if (activeWordArray.toString() == "s,a,t,e,l,l,i,t,e"){
+
+							document.getElementById("imgChange").src="assets/images/satellite.gif";
+							document.getElementById("scienceMp3").src="assets/images/satellite.mp3";
+
+						}
+						if (activeWordArray.toString() == "e,l,e,c,t,r,i,c"){
+
+							document.getElementById("imgChange").src="assets/images/electric.gif";
+							document.getElementById("scienceMp3").src="assets/images/electric.mp3";
+
+						}
+						if (activeWordArray.toString() == "u,l,t,r,a,v,i,o,l,e,t"){
+
+							document.getElementById("imgChange").src="assets/images/ultraviolet.jpg";
+							document.getElementById("scienceMp3").src="assets/images/ultraviolet.mp3";
+
+						}
+						if (activeWordArray.toString() == "v,e,g,e,t,a,t,i,o,n"){
+
+							document.getElementById("imgChange").src="assets/images/vegetation.gif";
+							document.getElementById("scienceMp3").src="assets/images/vegetation.mp3";
+
+						}												
+						if (activeWordArray.toString() == "g,a,l,a,x,y"){
+
+							document.getElementById("imgChange").src="assets/images/galaxy.gif";
+							document.getElementById("scienceMp3").src="assets/images/galaxy.mp3";
+
+						}
+						if (activeWordArray.toString() == "r,o,c,k,e,t"){
+
+							document.getElementById("imgChange").src="assets/images/rocket.jpg";
+							document.getElementById("scienceMp3").src="assets/images/rocket.mp3";
+
+						}	
+						if (activeWordArray.toString() == "r,o,b,o,t"){
+
+							document.getElementById("imgChange").src="assets/images/robot.gif";
+							document.getElementById("scienceMp3").src="assets/images/robot.mp3";
+
+						}	
+						if (activeWordArray.toString() == "c,a,l,c,u,l,a,t,o,r"){
+
+							document.getElementById("imgChange").src="assets/images/calculator.jpg";
+							document.getElementById("scienceMp3").src="assets/images/calculator.mp3";
+
+						}										
+						if (activeWordArray.toString() == "n,e,u,t,r,o,n"){
+
+							document.getElementById("imgChange").src="assets/images/neutron.jpg";
+							document.getElementById("scienceMp3").src="assets/images/neutron.mp3";
+
+						}
+						if (activeWordArray.toString() == "g,r,a,v,i,t,y"){
+
+							document.getElementById("imgChange").src="assets/images/gravity.jpg";
+							document.getElementById("scienceMp3").src="assets/images/gravity.mp3";
+
+						}
+						if (activeWordArray.toString() == "c,u,r,i,e"){
+
+							document.getElementById("imgChange").src="assets/images/curie.gif";
+							document.getElementById("scienceMp3").src="assets/images/curie.mp3";
+
+						}		
+						if (activeWordArray.toString() == "c,h,e,m,i,c,a,l"){
+
+							document.getElementById("imgChange").src="assets/images/chemical.jpg";
+							document.getElementById("scienceMp3").src="assets/images/chemical.mp3";
+
+						}										
+						if (activeWordArray.toString() == "b,r,a,i,n,s,t,e,m"){
+
+							document.getElementById("imgChange").src="assets/images/brainstem.jpg";
+							document.getElementById("scienceMp3").src="assets/images/brainstem.mp3";
+
+						}	
+						if (activeWordArray.toString() == "k,a,l,e,i,d,o,s,c,o,p,e"){
+
+							document.getElementById("imgChange").src="assets/images/kaleidoscope.gif";
+							document.getElementById("scienceMp3").src="assets/images/kaleidoscope.mp3";
+
+						}			
+						if (activeWordArray.toString() == "f,i,r,e,f,l,y"){
+
+							document.getElementById("imgChange").src="assets/images/firefly.gif";
+							document.getElementById("scienceMp3").src="assets/images/firefly.mp3";
+
+						}
+						if (activeWordArray.toString() == "r,e,f,l,e,c,t,i,o,n"){
+
+							document.getElementById("imgChange").src="assets/images/reflection.jpg";
+							document.getElementById("scienceMp3").src="assets/images/reflection.mp3";
+
+						}
+						if (activeWordArray.toString() == "s,p,a,c,e"){
+
+							document.getElementById("imgChange").src="assets/images/space.gif";
+							document.getElementById("scienceMp3").src="assets/images/space.mp3";
+
+						}
+						if (activeWordArray.toString() == "e,l,e,m,e,n,t"){
+
+							document.getElementById("imgChange").src="assets/images/element.gif";
+							document.getElementById("scienceMp3").src="assets/images/element.mp3";
+
+						}				
+						if (activeWordArray.toString() == "a,s,t,r,o,p,h,y,s,i,c,i,s,t"){
+
+							document.getElementById("imgChange").src="assets/images/astrophysicist.gif";
+							document.getElementById("scienceMp3").src="assets/images/astrophysicist.mp3";
+
+						}	
+
+						document.getElementById("titleID").innerHTML = ("The word was: " + activeWordArray.join('') + ".\n\nYou got it! Great Job!");
+						
+						wins = wins + 1;
+						wrongGuesses = [];
+						beenGuessed = [];
+
+						getComputerGuess();
+
+						remainingGuesses = activeWordArray.length;
+
+						getBlankLines(activeWordArray);
+
+						letterIncluded = false;
+
+					}
+
+					else if (remainingGuesses < 1){
+						
+						document.getElementById("titleID").innerHTML = ("The word was: " + activeWordArray.join('') + ".\n\nYou Lose. Please try again!");
+
+						losses = losses + 1;
+						wrongGuesses = [];
+						beenGuessed = [];					
+
+						getComputerGuess();
+						remainingGuesses = activeWordArray.length;
+
+						getBlankLines(activeWordArray);
+
+						letterIncluded = false;
+
+					}
+
+					var wrongGuessesText = "<p>Letters Guessed: </p" + "\n<p>" + wrongGuesses.join(' ') + "</p";
+
+					var html = "\n<p>Continue Guessing!</p>" +
+					"<p>wins: " + wins + "</p>" +
+					"<p>losses: " + losses + "</p>" + 
+					"<p>remaining guesses: " + remainingGuesses + "</p>";
+
+					document.getElementById("game").innerHTML = html;
+					document.getElementById("word").innerHTML = lineMarks.join(' ');
+					document.getElementById("guessed").innerHTML = wrongGuessesText;
+
 
 				}
-				}
 
-			inArray(userInput, lineMarks);
+				else{
 
-
-			console.log(letterIncluded);
-
-			if (letterIncluded === false){
-
-				wrongGuesses.push(userInput);
-				beenGuessed.push(userInput);			
-				remainingGuesses = remainingGuesses - 1;
-
-			}	
+					document.getElementById("titleID").innerHTML = ("Zoinks! " +userInput + " was already guessed. Please choose another letter!");
 				
-		if (lineMarks.toString() === activeWordArray.toString()){
-
-				if (activeWordArray.toString() == "e,c,l,i,p,s,e"){
-
-					document.getElementById("imgChange").src="assets/images/eclipse.jpg";
-					document.getElementById("scienceMp3").src="assets/images/eclipse.mp3";
-
 				}
-				if (activeWordArray.toString() == "q,u,a,n,t,u,m"){
-
-					document.getElementById("imgChange").src="assets/images/quantum.jpg";
-					document.getElementById("scienceMp3").src="assets/images/quantum.mp3";
-
-				}
-				if (activeWordArray.toString() == "j,u,p,i,t,e,r"){
-
-					document.getElementById("imgChange").src="assets/images/jupiter.jpg";
-					document.getElementById("scienceMp3").src="assets/images/jupiter.mp3";
-
-				}					
-				if (activeWordArray.toString() == "r,a,d,i,o,a,c,t,i,v,e"){
-
-					document.getElementById("imgChange").src="assets/images/radioactive.jpg";
-					document.getElementById("scienceMp3").src="assets/images/radioactive.mp3";
-
-				}							
-				if (activeWordArray.toString() == "a,s,t,r,o,n,o,m,y"){
-
-					document.getElementById("imgChange").src="assets/images/astronomy.jpg";
-					document.getElementById("scienceMp3").src="assets/images/astronomy.mp3";
-
-				}
-				if (activeWordArray.toString() == "s,a,t,e,l,l,i,t,e"){
-
-					document.getElementById("imgChange").src="assets/images/satellite.gif";
-					document.getElementById("scienceMp3").src="assets/images/satellite.mp3";
-
-				}
-				if (activeWordArray.toString() == "e,l,e,c,t,r,i,c"){
-
-					document.getElementById("imgChange").src="assets/images/electric.gif";
-					document.getElementById("scienceMp3").src="assets/images/electric.mp3";
-
-				}
-				if (activeWordArray.toString() == "u,l,t,r,a,v,i,o,l,e,t"){
-
-					document.getElementById("imgChange").src="assets/images/ultraviolet.jpg";
-					document.getElementById("scienceMp3").src="assets/images/ultraviolet.mp3";
-
-				}
-				if (activeWordArray.toString() == "v,e,g,e,t,a,t,i,o,n"){
-
-					document.getElementById("imgChange").src="assets/images/vegetation.jpg";
-					document.getElementById("scienceMp3").src="assets/images/vegetation.mp3";
-
-				}												
-				if (activeWordArray.toString() == "g,a,l,a,x,y"){
-
-					document.getElementById("imgChange").src="assets/images/galaxy.gif";
-					document.getElementById("scienceMp3").src="assets/images/galaxy.mp3";
-
-				}
-				if (activeWordArray.toString() == "r,o,c,k,e,t"){
-
-					document.getElementById("imgChange").src="assets/images/rocket.jpg";
-					document.getElementById("scienceMp3").src="assets/images/rocket.mp3";
-
-				}	
-				if (activeWordArray.toString() == "r,o,b,o,t"){
-
-					document.getElementById("imgChange").src="assets/images/robot.gif";
-					document.getElementById("scienceMp3").src="assets/images/robot.mp3";
-
-				}	
-				if (activeWordArray.toString() == "c,a,l,c,u,l,a,t,o,r"){
-
-					document.getElementById("imgChange").src="assets/images/calculator.jpg";
-					document.getElementById("scienceMp3").src="assets/images/calculator.mp3";
-
-				}										
-				if (activeWordArray.toString() == "n,e,u,t,r,o,n"){
-
-					document.getElementById("imgChange").src="assets/images/neutron.jpg";
-					document.getElementById("scienceMp3").src="assets/images/neutron.mp3";
-
-				}
-				if (activeWordArray.toString() == "g,r,a,v,i,t,y"){
-
-					document.getElementById("imgChange").src="assets/images/gravity.jpg";
-					document.getElementById("scienceMp3").src="assets/images/gravity.mp3";
-
-				}
-				if (activeWordArray.toString() == "c,u,r,i,e"){
-
-					document.getElementById("imgChange").src="assets/images/curie.gif";
-					document.getElementById("scienceMp3").src="assets/images/curie.mp3";
-
-				}		
-				if (activeWordArray.toString() == "c,h,e,m,i,c,a,l"){
-
-					document.getElementById("imgChange").src="assets/images/chemical.jpg";
-					document.getElementById("scienceMp3").src="assets/images/chemical.mp3";
-
-				}										
-				if (activeWordArray.toString() == "b,r,a,i,n,s,t,e,m"){
-
-					document.getElementById("imgChange").src="assets/images/brainstem.jpg";
-					document.getElementById("scienceMp3").src="assets/images/brainstem.mp3";
-
-				}
-				if (activeWordArray.toString() == "c,y,c,l,o,n,e"){
-
-					document.getElementById("imgChange").src="assets/images/cyclone.jpg";
-					document.getElementById("scienceMp3").src="assets/images/cyclone.mp3";
-
-				}	
-				if (activeWordArray.toString() == "k,a,l,e,i,d,o,s,c,o,p,e"){
-
-					document.getElementById("imgChange").src="assets/images/kaleidoscope.gif";
-					document.getElementById("scienceMp3").src="assets/images/kaleidoscope.mp3";
-
-				}			
-				if (activeWordArray.toString() == "f,i,r,e,f,l,y"){
-
-					document.getElementById("imgChange").src="assets/images/firefly.gif";
-					document.getElementById("scienceMp3").src="assets/images/firefly.mp3";
-
-				}
-				if (activeWordArray.toString() == "r,e,f,l,e,c,t,i,o,n"){
-
-					document.getElementById("imgChange").src="assets/images/reflection.jpg";
-					document.getElementById("scienceMp3").src="assets/images/reflection.mp3";
-
-				}
-
-				alert("The word was: " + activeWordArray.join('') + "\n\nYou got it! Great Job!");
-				
-				wins = wins + 1;
-				wrongGuesses = [];
-				beenGuessed = [];
-
-				getComputerGuess();
-
-				remainingGuesses = activeWordArray.length;
-
-				getBlankLines(activeWordArray);
-
-				letterIncluded = false;
-
+			
 			}
+			
+			else{
 
-			else if (remainingGuesses < 1){
-
-				alert("The word was: " + activeWordArray.join('') + "\n\nYou Lose. Please try again!");
-
-				losses = losses + 1;
-				wrongGuesses = [];
-				beenGuessed = [];					
-
-				getComputerGuess();
-				remainingGuesses = activeWordArray.length;
-
-				getBlankLines(activeWordArray);
-
-				letterIncluded = false;
-
+				document.getElementById("titleID").innerHTML = ("Letters Only! Please try again.");			
+			
 			}
-
-				var wrongGuessesText = "<p>Letters Guessed: </p" + "\n<p>" + wrongGuesses.join(' ') + "</p";
-
-				var html = "\n<p>Continue Guessing!</p>" +
-				"<p>wins: " + wins + "</p>" +
-				"<p>losses: " + losses + "</p>" + 
-				"<p>remaining guesses: " + remainingGuesses + "</p>";
-
-		          // Injecting the HTML we just created into our div and updating the game information on our page.
-				document.getElementById("game").innerHTML = html;
-				document.getElementById("word").innerHTML = lineMarks.join(' ');
-				document.getElementById("guessed").innerHTML = wrongGuessesText;
-
-
-		}
-
-		else{
-			console.log("Try again!");
-			// alert(userInput + " was already guessed. Please choose another letter!");
-			document.getElementById("titleID").innerHTML = ("Zoinks! " +userInput + " was already guessed. Please choose another letter!");
-		}
 
 	}
 

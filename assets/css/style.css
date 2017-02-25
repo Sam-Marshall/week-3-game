@@ -8,9 +8,13 @@
 	opacity: 0.8 !important;
 	position: relative;
 }
+h1{
+	font-size: 75px !important;
+}
 #imgChange{
 	width: 100%;
 	height: auto;
+	border-radius: 10px;
 }
 #titleID{
 	display: inline;
@@ -20,9 +24,9 @@
 }
 body{
 	padding: 10px;
-	background-image: url("../images/dextersLab.jpg");
+	background-image: url("../images/spaceflight.gif");
 	background-size: cover;
-	font-family: 'Baskerville Italics' !important;
+	font-family: 'VT323', monospace !important;
 }
 .row{
 	margin: 15px;
@@ -37,7 +41,7 @@ body{
 }
 #game, #word, #guessed {
 	color: white;
-	font-size: 18px;
+	font-size: 24px;
 }
 #game{
 	background-color: black;
@@ -55,7 +59,7 @@ body{
 	background-color: black;
 	padding: 10px;
 }
-#mainImage{
+/*#mainImage{
 	height: 100px;
 	width: auto;
 	position: absolute;
@@ -70,7 +74,7 @@ body{
 	top: 70px;
     right: 110px;
 	border-radius: 10px;    
-}
+}*/
 div{
 	border-radius: 10px;
 }
