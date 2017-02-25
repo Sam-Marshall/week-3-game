@@ -11,6 +11,9 @@
 h1{
 	font-size: 75px !important;
 }
+button{
+	font-size: 75px !important;
+}
 #imgChange{
 	width: 100%;
 	height: auto;

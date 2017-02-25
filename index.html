@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
 	<title>She Blinded Me With Science</title>
+	<!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
 	<link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -15,7 +16,7 @@
 		<div class="jumbotron">
 
 			<h1>She Blinded Me With Science!</h1>
-			<p>Boiling beakers Batman, whatever are we going to do?!</p>
+			<p>A Hangman Game For The Nerd In All of Us</p>
 
 <!-- 			<div><img id="mainImage" src="assets/images/beaker.gif"></div>
 			<div><img id="mainImage2" src="assets/images/beaker.gif"></div> -->
@@ -24,45 +25,59 @@
 		
 		</div>
 
-		<div class="row">
+		<div id="bodyContent">
 
-			<div id="game" class="col-md-4 col-sm-4 text-center center-block">
+			<div class="row">
 
-				<p>Press Any Key to Get Started!</p>
-				<br>
+				<div id="game" class="col-md-4 col-sm-4 text-center center-block">
 
-			</div>	
+					<p>Welcome</p>
+					<br>
 
-			<div class="col-md-4 col-sm-4 mainGif text-center center-block">
+				</div>	
+
+				<div class="col-md-4 col-sm-4 mainGif text-center center-block">
+				
+				<img id="imgChange" src="assets/images/arrowDown.gif" alt="Science Gif">	
+
+				</div>
+
+				<div id="guessed" class="col-md-4 col-sm-4 text-center center-block">
+					
+					<p>Travelers</p>
+					<br>
+				
+				</div>	
+
+			</div>
 			
-			<img id="imgChange" src="assets/images/science.gif" alt="Science Gif">	
+			<div class="row">	
+
+				<div class="col-md-4 col-sm-4"></div>
+
+				<div id="word" class="col-md-4 col-sm-4 center-block">
+					
+					<br>
+					
+					<button class="btn btn-danger btn-lg center-block" onclick="playGame()">Start</button>
+					
+					<br><br>
+
+				</div>
 
 			</div>
-
-			<div id="guessed" class="col-md-4 col-sm-4 text-center center-block">
-			
-			</div>	
-
-		</div>
-		
-		<div class="row">	
-
-			<div class="col-md-4 col-sm-4">
-			</div>
-
-			<div id="word" class="col-md-4 col-sm-4 center-block">
-
-				<p>HANGMAN</p>
-				<br><br>
-
-			</div>
-
 		</div>
 
 	
 	</div>
 	
 	<script type="text/javascript">
+
+	function playGame(){
+	
+		document.getElementById("game").innerHTML= ("Press Any Key to Get Started!");
+		document.getElementById("imgChange").src="assets/images/science.gif";
+		document.getElementById("guessed").innerHTML= ("");
 
 		var wordList = ["eclipse", "quantum", "jupiter", "radioactive", "astronomy", "satellite", "electric", "ultraviolet", "vegetation", "galaxy", "rocket", "robot", "calculator", "neutron", "gravity", "curie", "chemical", "brainstem", "kaleidoscope", "firefly", "reflection", "space", "element", "astrophysicist"];
 
@@ -76,6 +91,7 @@
 		var letterIncluded = false;
 		var beenGuessed = [];
 		var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+		var a = "";
 
 		function getComputerGuess(){
 
@@ -343,6 +359,7 @@
 						document.getElementById("titleID").innerHTML = ("The word was: " + activeWordArray.join('') + ".\n\nYou Lose. Please try again!");
 
 						losses = losses + 1;
+
 						wrongGuesses = [];
 						beenGuessed = [];					
 
@@ -383,7 +400,7 @@
 			
 			}
 
-	}
+	} }
 
 	</script>>
 
