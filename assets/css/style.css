@@ -11,8 +11,11 @@
 h1{
 	font-size: 75px !important;
 }
-button{
+#word button{
 	font-size: 75px !important;
+}
+#resetBtn button{
+	font-size: 24px !important;
 }
 #imgChange{
 	width: 100%;

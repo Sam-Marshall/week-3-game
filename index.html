@@ -21,7 +21,7 @@
 <!-- 			<div><img id="mainImage" src="assets/images/beaker.gif"></div>
 			<div><img id="mainImage2" src="assets/images/beaker.gif"></div> -->
 			<div id="titleID"></div>
-			<audio loop id="scienceMp3" autoplay="autoplay" src="assets/images/BlindedMeWithScience.mp3"></audio>
+			<audio loop id="scienceMp3" autoplay="autoplay" src="#"></audio>
 		
 		</div>
 
@@ -59,7 +59,21 @@
 					
 					<br>
 					
-					<button class="btn btn-danger btn-lg center-block" onclick="playGame()">Start</button>
+					<button class="btn btn-danger btn-lg center-block start" onclick="playGame()">Start</button>
+					
+					<br><br>
+
+				</div>
+
+			</div>
+
+			<div class="row">	
+
+				<div id="resetBtn" class="col-md-4 col-sm-4">
+					
+					<br>
+					
+					<button class="btn btn-danger btn-sm reset" onclick="playGame()">Reset</button>
 					
 					<br><br>
 
@@ -74,7 +88,8 @@
 	<script type="text/javascript">
 
 	function playGame(){
-	
+		
+		document.getElementById("scienceMp3").src="assets/images/BlindedMeWithScience.mp3";	
 		document.getElementById("game").innerHTML= ("Press Any Key to Get Started!");
 		document.getElementById("imgChange").src="assets/images/science.gif";
 		document.getElementById("guessed").innerHTML= ("");
@@ -91,7 +106,6 @@
 		var letterIncluded = false;
 		var beenGuessed = [];
 		var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-		var a = "";
 
 		function getComputerGuess(){
 
